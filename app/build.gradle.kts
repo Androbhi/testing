@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
 }
 
 android {
@@ -67,4 +68,17 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    val room_version = "2.4.3"
+    val coroutines_version = "1.6.4"
+    androidTestImplementation("androidx.room:room-testing:$room_version")
+    androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
+    androidTestImplementation ("app.cash.turbine:turbine:0.12.1")
+    androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version")
+    androidTestImplementation ("androidx.arch.core:core-testing:2.1.0")
+
 }
